@@ -2,6 +2,7 @@
 
 from flask import Flask, request, render_template, Response, stream_with_context, redirect, url_for, flash
 from config import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+import time
 
 
 import tweepy, redis
@@ -64,6 +65,7 @@ def stream():
     for message in pubsub.listen():
       yield 'data: %s\n\n' % message['data']
       # redirect('/stream/')
+
   return Response(stream_with_context(event_stream()), mimetype="text/event-stream")
 
 if __name__ == '__main__':

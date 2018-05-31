@@ -32,6 +32,7 @@ var MarkerView = Backbone.View.extend({
 	marker_info: {},
 	initialize: function(options) {
 		this.marker_info = options.marker_info;
+		console.log(this.marker_info);
 	},
 	render: function(){
 		var self = this;
