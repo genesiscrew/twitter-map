@@ -37,8 +37,8 @@ def index():
 # gets search-keyword and starts stream
 def streamTweets():
   # cancel old streams
-  for stream in streams:
-    stream.disconnect()
+  #for stream in streams:
+   # stream.disconnect()
 
   search_term = request.form['tweet']
   search_term_hashtag = '#' + search_term

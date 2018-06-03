@@ -26,26 +26,20 @@ def findWholeWord(w):
 def get_coordinates(locator):
 
     #geolocator = Nominatim()
-    url = "https://us1.locationiq.org/v1/search.php"
+    url = "https://geocode.xyz/"+locator+"?json=1"
 
-    data = {
-        'key': '96ea9d15e49787',
-        'q': locator,
-        'format': 'json'
-    }
 
     try:
-        print ('huh')
-        #location = geolocator.geocode(locator,timeout = 10)
-        location = requests.get(url, params=data)
 
-        print ('wtf')
-        long = location[0]['lon']
-        lat = location[0]['lat']
+        #location = geolocator.geocode(locator,timeout = 10)
+        location = requests.get(url)
+
+        #print ('wtf')
+        #print (location.json())
+        output = location.json()
+        long = output['longt']
+        lat = output['latt']
         print (long + ' ' + lat)
-        arr = []
-        arr.append(lat)
-        arr.append(long)
         print ('location for us is: ' + locator)
         return [lat, long]
     except GeocoderTimedOut as e:
