@@ -36,6 +36,7 @@
   var HeatmapOverlay = L.Layer.extend({
 
     initialize: function (config) {
+      console.log("leaflet");
       this.cfg = config;
       this._el = L.DomUtil.create('div', 'leaflet-zoom-hide');
       this._data = [];

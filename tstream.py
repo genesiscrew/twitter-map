@@ -25,25 +25,26 @@ def findWholeWord(w):
 
 def get_coordinates(locator):
 
-    #geolocator = Nominatim()
+    geolocator = Nominatim()
     url = "https://geocode.xyz/"+locator+"?json=1"
 
 
     try:
 
-        #location = geolocator.geocode(locator,timeout = 10)
-        location = requests.get(url)
+        location = geolocator.geocode(locator,timeout = 10)
+        #location = requests.get(url)
 
         #print ('wtf')
         #print (location.json())
-        output = location.json()
-        long = output['longt']
-        lat = output['latt']
-        print (long + ' ' + lat)
-        print ('location for us is: ' + locator)
+        #output = location.json() for xyz
+        #long = output['longt'] for xyz
+        #lat = output['latt'] for xyz
+        long = location.longitude
+        lat = location.latitude
+        print ('fucking works')
         return [lat, long]
     except GeocoderTimedOut as e:
-        print("Error: geocode failed on input %s with message %s" % (locator, e.msg))
+        print("Error: geocode failed on input %s with message %s" % (location, e.msg))
 
 
 
@@ -81,6 +82,7 @@ class StdOutListener(tweepy.StreamListener):
 
                 location = decoded['user']['location'].encode('ascii', 'ignore')
                 if get_coordinates(location):
+
                     geo = get_coordinates(location)
                     tweet = {}
                     tweet['screen_name'] = '@' + decoded['user']['screen_name']
