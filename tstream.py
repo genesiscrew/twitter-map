@@ -57,7 +57,7 @@ class StdOutListener(tweepy.StreamListener):
     # method called when raw data is received from connection
     def on_data(self, data):
         decoded = json.loads(data)
-
+        print(decoded)
         # listen only for tweets that is geo-location enabled
         try:
 

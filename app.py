@@ -28,20 +28,30 @@ red = redis.StrictRedis()
 # Add a place to keep track of current streams
 streams = []
 
+
+@app.route('/hamid')
+def hamid():
+  return render_template('hamid.html')
+
 @app.route('/')
 def index():
   return render_template('index.html')
 
 
 @app.route('/search', methods=['POST'])
+
+
 # gets search-keyword and starts stream
+
 def streamTweets():
   # cancel old streams
   #for stream in streams:
    # stream.disconnect()
 
   search_term = request.form['tweet']
+  print (type(search_term))
   search_term_hashtag = '#' + search_term
+  print (search_term_hashtag)
   # instantiate listener
   listener = StdOutListener()
   # stream object uses listener we instantiated above to listen for data

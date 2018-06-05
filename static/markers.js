@@ -9,12 +9,14 @@
 
     // define map properties
     var myOptions = {
-        zoom: 3,
-        center: myLatlng,
+           center: new google.maps.LatLng(0, 0),
+             zoom: 3,
+             minZoom: 1,
+
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: false,
-        scrollwheel: true,
-        draggable: true,
+        scrollwheel: false,
+		draggable: false,
         navigationControl: true,
         mapTypeControl: false,
         scaleControl: true,
@@ -33,7 +35,7 @@ var source = new EventSource(
 
   var heatmapLayer = new HeatmapOverlay(map, {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-        "radius": 0.8,
+        "radius": 2,
             "maxOpacity": 1,
         // scales the radius based on map zoom
         "scaleRadius": true,
